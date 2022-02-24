@@ -176,3 +176,31 @@ public:
         cout<<Station::station<<WaitingArea::count<<"patient processed";
     }
 };
+ /* Class Medical */
+
+class Medical:public Single{
+private:
+    string doctor;
+public:
+    Medical(string s, string d):
+        Single(s),
+        doctor(d)
+    {}
+    virtual void enter(Patient *p){
+        if (p->is_briefed()==false){
+            throw SimError("not briefed patient can not be vaccinated");
+        }else{
+            cout<<"enters"<<Station::station;
+            
+            p->set_vaccinated(Vaccine::astra);
+        }
+    }
+    virtual Patient* leave(){
+        cout<<"leaves"<<Station::station;
+        return Station::patient;
+    }
+
+    virtual void print(){
+        cout<<Station::station<<WaitingArea::count<<"patient vaccinated by";
+    }
+};
