@@ -143,3 +143,25 @@ public:
     }
 
 };
+
+class Single: public Station{
+private:
+    int total;
+public:
+    Single(string s):
+        Station(s),
+        total(0)
+    {}
+    int get_total(){
+        return total;
+    }
+    virtual void enter(Patient *p){
+        cout<<"enters"<<Station::station;
+        total++;
+        p->switch_briefed();
+    }
+    virtual Patient* leave(){
+        cout<<"leaves"<<Station::station;
+        return Station::patient;
+    }
+};
