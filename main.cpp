@@ -243,3 +243,32 @@ public:
     }
 
 };
+
+
+/* main function */
+int main(){
+    Center c;
+    char choice;
+
+    do{
+        try{
+            c.print();
+            cin>>choice;
+            if (choices == "b"){
+
+            }
+            if (choices == "c"){
+                c.vaccinate();
+            }
+            if (choices == "d"){
+                c.debrief();
+            }
+
+        }
+        catch(SimError &s){
+            cerr<<"simulation error: "<<s<<endl;
+        }
+
+    }while(choice != 'a');
+
+}
