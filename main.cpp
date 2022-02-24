@@ -204,3 +204,42 @@ public:
         cout<<Station::station<<WaitingArea::count<<"patient vaccinated by";
     }
 };
+ /* class center */
+ class Center{
+private:
+    Station *station[5];
+public:
+    Center(){
+
+        station[0] = new Station (Administrative ad("Registration and Briefing"));
+        station[1] = new Station (WaitingArea wa("Wait for Vaccination"));
+        station[2] = new Station (Medical m("Vaccination", "Hoque"));
+        station[3] = new Station (WaitingArea wa2("Wait after Vaccination"));
+        station[4] = new Station (Administrative ad2("Debriefing"));
+    }
+    void brief(Patient *p){
+        station[0]->enter(p);
+        station[0]->leave();
+        station[1]->enter(p);
+    }
+    void brief(){
+        station[1]->leave();
+        station[2]->enter(p);
+        station[2]->leave();
+        station[3]->enter(p);
+    }
+    void debrief(){
+        station[3]->leave();
+        station[4]->enter(p);
+        station[4]->leave();
+
+        delete p;
+    }
+    void print(){
+        cout<<"LINE DATA";
+        for (int i; i<5; i++){
+            station[i]->Station("print");
+        }
+    }
+
+};
