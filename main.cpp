@@ -91,3 +91,55 @@ public:
     virtual Patient* leave() = 0;
     virtual void print() = 0;
 };
+
+/* class WaitingArea */
+
+class WaitingArea: public Station{
+private:
+    class Waiting{
+    public:
+        Patient *patient;
+        Waiting *next;
+        Waiting(Patient *p):
+            patient(p),
+            next(nullptr)
+        {}
+    };
+    int count;
+    Waiting *waiting;
+public:
+    WaitingArea(string s):
+        Station(s, patient),
+        count(0),
+        waiting(nullptr)
+    {}
+    virtual void enter(Patient *p){
+
+        if (waiting == nullptr){
+            waiting->patient = p;
+            count++;
+        }else{
+            waiting->next->patient = p;
+            count++;
+        }
+    }
+    virtual Patient* leave(){
+        if (count == 0){
+            throw SimError("no patient waiting in"+station);
+        }else{
+            Patient* pt = waiting->patient;
+            waiting = waiting->next;
+            count--;
+            return pt;
+        }
+    }
+
+    virtual void print(){
+        cout<<station<<": "<<count<<" waiting patients: ";
+        while(waiting != nullptr){
+            cout<<waiting->patient->get_id()<<endl;
+            waiting = waiting->next;
+        }
+    }
+
+};
