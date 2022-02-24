@@ -41,3 +41,36 @@ public:
     void set_vaccinated(Vaccine);
     friend ostream& operator<<(ostream&, Patient&);
 };
+
+//  class and member function defination outside the class
+Patient::Patient():
+    id(no++),
+    briefed(!briefed),
+    vaccine(Vaccine::none)
+{}
+
+int Patient::get_id(){
+    return id;
+}
+
+bool Patient::is_briefed(){
+    return briefed;
+}
+
+void Patient::switch_briefed(){
+    briefed =!briefed;
+}
+
+void Patient::set_vaccinated(Vaccine v){
+    vaccine = v;
+}
+
+ostream& operator<<(ostream& out, Patient& p){
+    out<<"patient "<<p.get_id();
+    if (p.is_briefed() == false){
+        out<<" vaccinated with "<<p.vaccine;
+    }else{
+        out<<" briefed";
+    }
+    return out;
+}
