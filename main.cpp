@@ -165,3 +165,14 @@ public:
         return Station::patient;
     }
 };
+
+/* class Administrative */
+class Administrative:public Single{
+public:
+    Administrative(string s):
+        Single(s)
+    {}
+    virtual void print(){
+        cout<<Station::station<<WaitingArea::count<<"patient processed";
+    }
+};
