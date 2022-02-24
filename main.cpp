@@ -74,3 +74,20 @@ ostream& operator<<(ostream& out, Patient& p){
     }
     return out;
 }
+
+/* class Station   */
+
+class Station{
+protected:
+    string station;
+    Patient *patient;
+public:
+    Station(string s, Patient *p):
+        station(s),
+        patient(p)
+    {}
+    virtual ~Station(){}
+    virtual void enter(Patient*)=0;
+    virtual Patient* leave() = 0;
+    virtual void print() = 0;
+};
